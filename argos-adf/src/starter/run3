@@ -1,0 +1,1 @@
+python3 ../process/Process_DiscordDiscovery.py -c config.json -h localhost --process-name Model_1

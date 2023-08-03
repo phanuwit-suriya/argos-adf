@@ -1,0 +1,7 @@
+numpy
+matplotlib
+numpy
+pandas
+Pyro4
+slackclient
+requests

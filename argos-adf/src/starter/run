@@ -1,0 +1,1 @@
+python3 Starter.py --non-root $1 -c config.json -h localhost

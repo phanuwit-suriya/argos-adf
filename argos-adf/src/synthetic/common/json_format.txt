@@ -1,0 +1,26 @@
+[]
+
+name
+category
+signal []
+    model
+        name
+        parameter
+        start (localtime)
+        end (localtime) inf - for infinity
+noise []
+    model
+        name
+        parameter
+        start (localtime)
+        end (localtime) inf - for infinity
+anomaly[]
+    model
+        name
+        parameter
+        start (localtime)
+        end (localtime) inf - for infinity
+
+data[]
+    tuple (localtime, value)
+

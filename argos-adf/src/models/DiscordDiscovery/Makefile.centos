@@ -1,0 +1,41 @@
+#Requires numpy-source: numpy.i, arrayobjects.h, _arrayobjects.h
+
+TARGET   = _naive_dd.so
+SWIG_SRC = naive_dd.i
+CPP_SRC  = naive_dd.cpp\
+           naive_dd_mt.cpp
+
+SWIG = swig
+CPP  = g++
+LD   = g++
+RM   = rm
+
+PYTHON_INCLUDE     = -I/usr/include/python3.6m 
+NUMPY_CORE_INCLUDE = -I../../../../numpy/numpy/core/include/ -I/usr/lib64/python3.5/site-packages/numpy/core/include
+
+SWIG_PFLAGS = -python
+SWIG_SFLAGS = 
+CPP_PFLAGS  = -c -fPIC
+CPP_SFLAGS  = $(PYTHON_INCLUDE) $(NUMPY_CORE_INCLUDE)
+LD_PFLAGS   = --shared
+LD_SFLAGS   =
+RM_PFLAGS   = -f
+
+SWIG_INTRM = $(SWIG_SRC:.i=.py)  $(SWIG_SRC:.i=_wrap.c)
+CPP_INTRM  = $(SWIG_SRC:.i=_wrap.o) $(CPP_SRC:.cpp=.o)
+
+all: $(CPP_INTRM) $(SWIG_INTRM)
+	$(LD) $(LD_PFLAGS) $(CPP_INTRM) -o $(TARGET) $(LD_SFLAGS)
+
+clean:
+	$(RM) $(RM_PFLAGS) $(TARGET) $(SWIG_INTRM) $(CPP_INTRM)
+
+%.py %_wrap.c:%.i
+	$(SWIG) $(SWIG_PFLAGS) $< $(SWIG_SFLAGS)
+
+%.o:%.cpp
+	$(CPP) $(CPP_PFLAGS) $< $(CPP_SFLAGS)
+	
+%.o:%.c
+	$(CPP) $(CPP_PFLAGS) $< $(CPP_SFLAGS)
+	

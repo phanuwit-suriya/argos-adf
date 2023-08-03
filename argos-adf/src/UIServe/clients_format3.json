@@ -1,0 +1,22 @@
+{
+    "config_gen": {
+        "poll_interval": 2,
+        "start_lookback": 360000
+    },
+    "data_range": {
+        "end": "2017-08-30T12:20:00Z",
+        "start": "2017-08-29T00:00:00Z",
+        "type": "ISO8601"
+    },
+    "data_types": [
+        "datapoints",
+        "anomalies"
+    ],
+    "metric_addr": "aliasByNode(production.amers.*.*.tim-tsc-bcst.*.os.cpu.cpuusage, 5)",
+    "model_name": "DD",
+    "model_param": {
+        "knowledgeWindow": 500,
+        "sensitivity": "medium",
+        "step": 20
+    }
+}
